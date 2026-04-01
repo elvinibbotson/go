@@ -85,6 +85,17 @@ input {
 	z-index: 100;
 }
 
+.text-button {
+	border: none;
+	margin: 15px;
+	padding: 5px;
+	font-size:1.2em;
+	font-weight: bold;
+	color: white;
+	background: none;
+	float: right;
+}
+
 .dialog {
   position: fixed;
   top: 0;

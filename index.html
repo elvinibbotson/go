@@ -39,27 +39,16 @@
 	<div id='buttonAdd' class='round-button'><img src='add.svg'/></div>
 </main>
 
-<div id='flashcardDialog' class='dialog'>
-	
-</div>
+<div id='flashcardDialog' class='dialog'></div>
 
 <div id='findDialog' class='dialog'>
 	find <input type='text' id='findField'/>
 </div>
 
-<div id="importDialog" class="dialog">
-	<div class="dialog-title">Load from saved file</div>
-	<input type="file" id="fileChooser">
-	<div class="dialog-body">Imported data will replace any records you already have.</div>
-    <div class="dialog-buttons">
-		<button id="buttonCancelImport">CANCEL</button>
-    </div>
-</div>
-
 <div id='wordPanel' class="dialog">
 	<div class="dialog-body" id='kanji'></div>
-	<div class="dialog-body" id='kana'></div>
-	<div class="dialog-body" id='romaji'></div>
+	<div class="dialog-body"><span id='kana'></span> <span id='romaji'></span></div>
+	<!--div class="dialog-body" id='romaji'></div-->
 	<div class="dialog-body" id='anglo'></div>
 	<div class="dialog-buttons">
 	    <!--button id="buttonClose">CLOSE</button>
@@ -72,12 +61,26 @@
 
 <div id="wordDialog" class="dialog">
 	<div class="dialog-title"><span id='label'>kanji</span> <input type="text" id="wordField"/></div>
-	
 	<p id='word'></p>
 	<div class="dialog-buttons">
 		<button id="buttonDelete"><img src='delete.svg'></button>
       	<button id="buttonNextSave"><img id='nextSave' src='next.svg'></button>  
 	</div>
+</div>
+
+<div id='dataDialog' class='dialog'>
+	<div id='dataMessage'></div>
+	<button id='buttonBackup' class='text-button'>BACKUP</button>
+	<button id='buttonRestore' class='text-button'>RESTORE</button>
+</div>
+
+<div id="importDialog" class="dialog">
+	<div class="dialog-title">Load from saved file</div>
+	<input type="file" id="fileChooser">
+	<div class="dialog-body">Imported data will replace any records you already have.</div>
+    <div class="dialog-buttons">
+		<button id="buttonCancelImport">CANCEL</button>
+    </div>
 </div>
 
 <script src="go.js" async></script>

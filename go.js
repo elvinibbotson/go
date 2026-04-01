@@ -6,30 +6,36 @@ function id(el) {
 'use strict';
 
 // GLOBAL VARIABLES
-var db;
-var records = [];
+// var db;
+// var records = [];
 var words=[];
 var word={};
 var wordIndex=null;
-var record = {};
-var step = 0;
-var cardIndex = 0;
-var cardStep = 0;
-var mode = 'add';
-var lang = 'English';
-var recordIndex = -1;
+// var record = {};
+var step=0;
+var cardIndex=0;
+var cardStep=0;
+var mode='none';
+var lang='English';
+// var recordIndex = -1;
 var lastSave = null;
 var resort = false;
-var qFocus = null;
-var finds = []; // NEW: list of words matching find term
+// var qFocus = null;
+var finds=[]; // NEW: list of words matching find term
 var findIndex=null;
 // var find=-1; // index for matching finds (-1 if none)
 
 // EVENT LISTENERS
 
+id('header').addEventListener('click',function() {
+	show('dataDialog');
+})
+
 id('background').addEventListener('click',function() {
 	console.log('close dialogs');
+	hide('dataDialog');
 	hide('findDialog');
+	hide('flashcardDialog');
 	hide('wordDialog');
 	hide('wordPanel');
 	show('buttonFind');
@@ -208,7 +214,7 @@ id('buttonNext').addEventListener('click',function(e) {
 	}
 })
 
-id('wordPanel').addEventListener('click',function() { // ********  SET UP WORD DIALOG AND CALL NEXTSTEP() *******
+id('wordPanel').addEventListener('click',function() {
 	console.log('EDIT');
 	hide('wordPanel');
     mode='edit';
@@ -255,6 +261,10 @@ id('buttonDelete').addEventListener('click', function() {
 })
 
 id('buttonNextSave').addEventListener('click',nextStep);
+
+id('buttonBackup').addEventListener('click',function() {
+	show('backupDialog');
+});
 
 function nextStep() {
 	console.log("input: " + id('wordField').value);
@@ -509,13 +519,15 @@ function load() {
 	console.log('data: '+data.length+' bytes');
     words=JSON.parse(data);
     console.log(words.length+' words');
+    id('wordCount').innerText=words.length+' words';
     var today=Math.floor(new Date().getTime()/86400000);
-	var days=today-backupDay;
-	if(days>4) { // backup reminder every 5 days
+	// var days=today-backupDay;
+	/* if(days>4) { // backup reminder every 5 days
 		id('dataMessage').innerText=days+' since last backup';
 		id('restoreButton').disabled=true;
 		toggleDialog('dateDialog',true);
 	}
+	*/
 }
 // SAVE VOCABULARY
 function save() {
@@ -610,6 +622,8 @@ console.log("STARTING");
 console.log('screen size: '+screen.width+'x'+screen.height);
 lastSave=window.localStorage.getItem('tangoSave');
 console.log('lastSave: '+lastSave);
+load();
+/*
 var defaultData = {
     records: [{
         kanji: "字",
@@ -686,7 +700,7 @@ request.onerror = function(event) {
     records = defaultData.records;
     alert("use default data");
 };
-
+*/
 // implement service worker if browser is PWA friendly
 if (navigator.serviceWorker.controller) {
     console.log('Active service worker found, no need to register')
