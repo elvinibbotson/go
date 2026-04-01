@@ -4,43 +4,48 @@
 <head>
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<title>go</title>
-  	<link rel="manifest" href="goManifest.json">
-  	<link rel="stylesheet" type="text/css" href="goStyles.css">
-  	<meta name="application-name" content="go">
+  	<title>Go</title>
+  	<link rel="manifest" href="manifest.json">
+  	<link rel="stylesheet" type="text/css" href="go.css">
+  	<meta name="application-name" content="Go">
 </head>
 
 <body>
 
 <header id="header">
-	<span id="headerTitle">Tango 単語 </span>
+	<span id="headerTitle">Go 語 </span>
+	<span id='wordCount'><span id='count'></span> words</span>
 </header>
 
 <main id="main">
-    <div class="content">
-		<input type='text' id='findField'/>
-		<button id='findButton'></button>
-    </div>
-    <div class="content">
-        <br/>
+    <div id='background' class="content">
+    	flashcards
+    	<button class='flashcardButton' id='angloButton'>English</button>
         <button class='flashcardButton' id='nihongoButton'>日本語</button>
-        <button class='flashcardButton' id='angloButton'>English</button>
-        flashcards
+        <div id='help' class='content'>
+			<p><img src='add.svg'/> <b>Add vocabulary</b><br>
+			Use Japanese keyboard for...<br>
+			kanji (skip if none) and...<br> 
+			hiragana/katakana, and...<br/>
+			English keyboard for...<br>
+			Romaji and English.</p>
+			<p><img src='find.svg'/> <b>Find</b> Japanese (Romaji)<br>
+			or English words.</p>
+			<p>Test yourself using Japanese<br>or English <b>flashcards</b></p>
+		</div>
     </div>
-    <div id='help' class='content'>
-		<p><img src='addButton24px.svg'/> <b>Add vocabulary</b><br>
-		Use Japanese keyboard for...<br>
-		kanji (skip if none) and...<br> 
-		hiragana/katakana, and...<br/>
-		English keyboard for...<br>
-		Romaji and English.</p>
-		<p><img src='findButton24px.svg'/> <b>Find</b> Japanese (Romaji)<br>
-		or English words.</p>
-		<p>Test yourself using Japanese<br>or English <b>flashcards</b></p>
-	</div>
-	<div id='wordcount'><span id='count'></span> words</div>
-	<div id='buttonAdd' class='round-button'><img src='addButton24px.svg'/></div>
+	<div id='buttonFind' class='round-button'><img src='find.svg'/></div>
+	<!--div id='wordcount'><span id='count'></span> words</div-->
+	<div id='buttonAdd' class='round-button'><img src='add.svg'/></div>
 </main>
+
+<div id='flashcardDialog' class='dialog'>
+	
+</div>
+
+<div id='findDialog' class='dialog'>
+	find <input type='text' id='findField'/>
+</div>
 
 <div id="importDialog" class="dialog">
 	<div class="dialog-title">Load from saved file</div>
@@ -51,34 +56,31 @@
     </div>
 </div>
 
-<div class="display" id='display'>
-	<div class='dialog-title' id='title'></div>
+<div id='wordPanel' class="dialog">
 	<div class="dialog-body" id='kanji'></div>
 	<div class="dialog-body" id='kana'></div>
 	<div class="dialog-body" id='romaji'></div>
 	<div class="dialog-body" id='anglo'></div>
 	<div class="dialog-buttons">
-	    <button id="buttonClose">CLOSE</button>
+	    <!--button id="buttonClose">CLOSE</button>
 		<button id="buttonEdit">EDIT</button>
-		<button id="buttonNextDone">DONE</button>
+		<button id="buttonNextCard">NEXT</button-->
+		<button id='buttonNext'><img src='next.svg'></button>
+		<button id='buttonBack'><img src='back.svg'></button>
     </div>
 </div>
 
-<div id="recordDialog" class="dialog">
-	<div class="dialog-title" id='dialogTitle'>add word/phrase</div>
-	<div class="dialog-body"><span id='label'>kanji</span> <input type="text" id="wordField"/></div>
-      <!--div class="dialog-body">kanji <input type="text" id="kanjiField"/></div>
-	  <div class="dialog-body">kana <input type="text" id="kanaField"/></div>
-	  <div class="dialog-body">Romanji <input type="text" id="romajiField"/></div>
-	  <div class="dialog-body">English <input type="text" id="angloField"/></div-->
+<div id="wordDialog" class="dialog">
+	<div class="dialog-title"><span id='label'>kanji</span> <input type="text" id="wordField"/></div>
+	
+	<p id='word'></p>
 	<div class="dialog-buttons">
-		<button id="buttonDelete">DELETE</button>
-	  	<button id="buttonCancel">CANCEL</button>
-      	<button id="buttonNextSave">NEXT</button>  
+		<button id="buttonDelete"><img src='delete.svg'></button>
+      	<button id="buttonNextSave"><img id='nextSave' src='next.svg'></button>  
 	</div>
 </div>
 
-<script src="goScript.js" async></script>
+<script src="go.js" async></script>
 
 </body>
 
