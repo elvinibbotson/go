@@ -1,7 +1,6 @@
 {
   "name": "Go PWA",
   "short_name": "Go",
-  "orientation":"portrait",
   "icons": [
 	{
 		"src": "go.png",
@@ -10,7 +9,7 @@
 		"purpose": "any"
 	}
   ],
-  "start_url": "/go/",
+  "start_url": "/Go/",
   "display": "standalone",
   "orientation":"portrait",
   "background_color": "black",

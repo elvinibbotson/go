@@ -236,8 +236,8 @@ id('buttonAdd').addEventListener('click',function() {
     id('word').innerHTML='-----------';
     id('wordField').value='';
     record={};
-    recordIndex = -1;
-    id('label').innerHTML = "kanji";
+    wordIndex=recordIndex=-1;
+    id('label').innerHTML="kanji";
     /*
     id("buttonDelete").disabled = true;
     id('buttonDelete').style.color = 'gray';
@@ -252,7 +252,7 @@ id('buttonAdd').addEventListener('click',function() {
     // id('help').innerHTML = '';
 });
 
-id('wordField').addEventListener('change',nextStep);
+// id('wordField').addEventListener('change',nextStep);
 
 id('buttonDelete').addEventListener('click',function() {
     alert("DELETE WORD");
@@ -272,6 +272,7 @@ id('buttonBackup').addEventListener('click',function() {
 });
 
 function nextStep() {
+	// ******* COULD ALL GO IN BUTTONNEXTSAVE LISTENER?  *********
 	console.log("input: " + id('wordField').value);
     // if (id('buttonNextSave').innerHTML == 'NEXT') {
     if(step<4) {
@@ -367,14 +368,15 @@ function nextStep() {
     }
     */
     // id('title').innerHTML = "saved";
-    id('kanji').innerHTML = word.kanji;
-    id('kana').innerHTML = word.kana;
-    id('romaji').innerHTML = word.romaji;
-    id('anglo').innerHTML = word.anglo;
+    id('kanji').innerHTML=word.kanji;
+    id('kana').innerHTML=word.kana;
+    id('romaji').innerHTML=word.romaji;
+    id('anglo').innerHTML=word.anglo;
     // id('buttonNextDone').innerHTML = 'DONE';
     hide('buttonBack');
     hide('buttonNext');
     show('wordPanel');
+    show('buttonAdd');
     // id('display').style.display = 'block';
 }
 /*
@@ -523,7 +525,7 @@ function load() {
 	}
 	console.log('data: '+data.length+' bytes');
     words=JSON.parse(data);
-    console.log(words.length+' words');
+    console.log(words.length+' words loaded - latest: '+words[words.length-1].romaji);
     id('wordCount').innerText=words.length+' words';
     var today=Math.floor(new Date().getTime()/86400000);
 	// var days=today-backupDay;
@@ -536,6 +538,7 @@ function load() {
 }
 // SAVE VOCABULARY
 function save() {
+	console.log('save '+words.length+' words');
 	var data=JSON.stringify(words);
 	window.localStorage.setItem('WordData',data);
 	console.log('data saved to WordData');
